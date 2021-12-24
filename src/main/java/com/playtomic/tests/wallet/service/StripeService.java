@@ -1,6 +1,8 @@
 package com.playtomic.tests.wallet.service;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.playtomic.tests.wallet.service.exception.StripeRestTemplateResponseErrorHandler;
+import com.playtomic.tests.wallet.service.exception.StripeServiceException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -22,19 +24,15 @@ import java.net.URI;
 public class StripeService {
 
     @NonNull
-    private URI chargesUri;
+    private final URI chargesUri;
 
     @NonNull
-    private URI refundsUri;
+    private final RestTemplate restTemplate;
 
-    @NonNull
-    private RestTemplate restTemplate;
-
-    public StripeService(@Value("stripe.simulator.charges-uri") @NonNull URI chargesUri,
-                         @Value("stripe.simulator.refunds-uri") @NonNull URI refundsUri,
+    public StripeService(@Value("${stripe.simulator.charges-uri}") @NonNull URI chargesUri,
+                         @Value("${stripe.simulator.refunds-uri}") @NonNull URI refundsUri,
                          @NonNull RestTemplateBuilder restTemplateBuilder) {
         this.chargesUri = chargesUri;
-        this.refundsUri = refundsUri;
         this.restTemplate =
                 restTemplateBuilder
                 .errorHandler(new StripeRestTemplateResponseErrorHandler())
