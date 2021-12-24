@@ -17,6 +17,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+// to talk about concurrency
 public class WalletService {
 
     public static final String AMOUNT_CAN_T_BE_LESS_THAN_10 = "Amount can't be less than 10.";
