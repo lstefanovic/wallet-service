@@ -3,6 +3,7 @@ package com.playtomic.tests.wallet.repository.model;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -16,4 +17,6 @@ public class Wallet {
     private BigDecimal balance;
     @Id
     private String id;
+    @Version
+    private Integer version;
 }

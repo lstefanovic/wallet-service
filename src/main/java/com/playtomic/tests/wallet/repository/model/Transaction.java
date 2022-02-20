@@ -3,6 +3,7 @@ package com.playtomic.tests.wallet.repository.model;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
@@ -30,5 +31,7 @@ public class Transaction {
      * {@link TransactionType}
      */
     private String transactionType;
+    @Version
+    private Integer version;
     private String walletId;
 }
